@@ -1,6 +1,6 @@
-## JSON REST API Client for Node.js
+# JSON REST API Client for Node.js
 
-# Motivation
+## Motivation
 In my search for a simple and concise client library for HTTP REST APIs, none of the npm modules that I found satisfied the criteria I was looking for:
 - Concise
 - Easy to read and use
@@ -10,7 +10,7 @@ In my search for a simple and concise client library for HTTP REST APIs, none of
 
 This client aims to satisfy all those criteria. Enjoy!
 
-# Installation
+## Installation
 ```
 npm install jrac --save
 ```
