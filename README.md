@@ -14,3 +14,16 @@ This client aims to satisfy all those criteria. Enjoy!
 ```
 npm install jrac --save
 ```
+## Usage
+```javascript
+var RestApiClient = require('jrac');
+
+var client = new RestApiClient('http://www.timeapi.org', 80);
+client.get('/utc/now')
+  .then(utcTime => {
+    // ...
+  })
+  .catch(errorMessage => {
+    // ...
+  });
+  ```
