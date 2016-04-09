@@ -147,4 +147,3 @@ class RestApiClient {
 }
 
 module.exports = RestApiClient;
-

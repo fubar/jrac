@@ -15,6 +15,7 @@ This client aims to satisfy all those criteria. Enjoy!
 npm install jrac --save
 ```
 ## Usage
+ES6:
 ```javascript
 var RestApiClient = require('jrac');
 
@@ -26,4 +27,17 @@ client.get('/utc/now')
   .catch(errorMessage => {
     // ...
   });
-  ```
+```
+"Regular" JS:
+```javascript
+var RestApiClient = require('jrac');
+
+var client = new RestApiClient('http://www.timeapi.org', 80);
+client.get('/utc/now')
+  .then(function (utcTime) {
+    // ...
+  })
+  .catch(function (errorMessage) {
+    // ...
+  });
+```
