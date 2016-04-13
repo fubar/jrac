@@ -1,7 +1,8 @@
 # JSON REST API Client for Node.js
 
 ## Motivation
-In my search for a simple and concise client library for HTTP REST APIs, none of the npm modules that I found satisfied the criteria I was looking for:
+In my search for a simple and concise client library for HTTP REST APIs, none of the npm modules that I found satisfied
+the criteria I was looking for:
 - Concise
 - Easy to read and use
 - Promises
@@ -43,3 +44,7 @@ booksApi
     // ...
   });
 ```
+
+The constructor accepts any valid URL, including port and query string. Query string parameters
+are added as defaults to the URL of all requests. Defaults are overwritten by equally named
+query string parameters passed into an individual request.
