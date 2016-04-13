@@ -63,5 +63,5 @@ Values are set as available:
 - bodyObj: The result of running JSON.parse on the raw response body
 
 The constructor accepts any valid URL, including port and query string. Query string parameters
-are added as defaults to the URL of all requests. Defaults are overwritten by equally named
-query string parameters passed into an individual request.
+present in this URL are added as defaults to the URLs of all requests. Defaults are overwritten
+by equally named query string parameters passed into an individual request.
