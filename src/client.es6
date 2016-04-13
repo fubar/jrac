@@ -53,7 +53,7 @@ class RestApiClient {
    * @param {object} queryStringParams
    * @param {object} requestBodyParams
    * @param {object} headers
-   * @returns {Promise} Resolved or rejected with an object that has the following properties:
+   * @returns {Promise} Resolved or rejected with an object that has the following properties and default values:
    *   {
    *     exception: null,
    *     statusCode: null,

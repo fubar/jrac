@@ -24,10 +24,10 @@ var booksApi = new RestApiClient('https://www.googleapis.com/books/v1');
 booksApi
   .get('volumes', {q: 'isbn:0307400840'})
   .then(result => {
-    // ...
+    console.log(result.bodyObj);
   })
   .catch(result => {
-    // ...
+    console.log(result.statusCode, result.exception);
   });
 ```
 "Regular" JS:
@@ -38,12 +38,29 @@ var booksApi = new RestApiClient('https://www.googleapis.com/books/v1');
 booksApi
   .get('volumes', {q: 'isbn:0307400840'})
   .then(function (result) {
-    // ...
+    console.log(result.bodyObj);
   })
   .catch(function (result) {
-    // ...
+    console.log(result.statusCode, result.exception);
   });
 ```
+
+Both the success and error handlers get passed an object that has the following properties and default values:
+```javascript
+{
+  exception: null,
+  statusCode: null,
+  headers: null,
+  bodyStr: null,
+  bodyObj: {}
+}
+```
+Values are set as available:
+- exception: An exception resulting from a try/catch or from a request error
+- statusCode: HTTP status code
+- headers: An object containing the response headers
+- bodyStr: A string containing the raw response body
+- bodyObj: The result of running JSON.parse on the raw response body
 
 The constructor accepts any valid URL, including port and query string. Query string parameters
 are added as defaults to the URL of all requests. Defaults are overwritten by equally named
