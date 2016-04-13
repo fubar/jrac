@@ -1,6 +1,6 @@
 {
   "name": "jrac",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "A JSON REST API client for Node.js with promises and minimal dependencies",
   "main": "lib/client.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "Simple",
     "Lightweight"
   ],
-  "author": "Phil G <fubar@phil-g.com>",
+  "author": "Philipp Gebauer <fubar@phil-g.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/fubar/jrac/issues"
