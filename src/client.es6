@@ -89,41 +89,26 @@ class RestApiClient {
     };
     return new Promise((resolve, reject) => {
 
-      var returnObj = {
-        exception: null,
-        statusCode: null,
-        headers: null,
-        bodyStr: null,
-        bodyObj: {}
-      };
-
-      var request = lib.request(options, response => {
+      var request = lib.request(options, httpResponse => {
 
           var chunks = [];
 
-          response
+          httpResponse
             .on('data', chunk => {
               chunks.push(chunk);
             })
             .on('end', () => {
-              returnObj.bodyStr = chunks.join('');
-              returnObj.statusCode = response.statusCode;
-              returnObj.headers = response.headers;
-
-              if (returnObj.bodyStr.length) {
-                try {
-                  returnObj.bodyObj = JSON.parse(returnObj.bodyStr);
-                } catch (e) {
-                  returnObj.exception = e;
-                  reject(returnObj);
-                }
+              var response = new RestApiResponse(httpResponse.statusCode, httpResponse.headers);
+              try {
+                response.data = JSON.parse(chunks.length && chunks.join('')) || {};
+              } catch (e) {
+                // Ignore parse errors
               }
-              return response.statusCode < 400 ? resolve(returnObj) : reject(returnObj);
+              return httpResponse.statusCode < 400 ? resolve(response) : reject(response);
             });
         })
         .on('error', e => {
-          returnObj.exception = e;
-          reject(returnObj);
+          reject(e);
         });
 
       request.write(body);
@@ -200,6 +185,23 @@ class RestApiClient {
    */
   "delete" (path, headers = {}) {
     return this._request('DELETE', path, {}, {}, headers);
+  }
+}
+
+/**
+ * @class RestApiResponse Represents an API response
+ */
+class RestApiResponse {
+
+  /**
+   * @param {number} statusCode HTTP status code
+   * @param {Object} headers HTTP response headers
+   * @param {Object} data The JSON-decoded response body
+   */
+  constructor (statusCode, headers = {}, data = {}) {
+    this.statusCode = statusCode;
+    this.headers = headers || {};
+    this.data = data || {};
   }
 }
 
