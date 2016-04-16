@@ -29,7 +29,6 @@ booksApi
   .get('volumes', {q: 'isbn:0307400840'})
   .then(response => {
     // response is an instance of RestApiResponse
-    console.log(response);
   })
   .catch(result => {
     if (result instanceof RestApiResponse) {
@@ -81,7 +80,7 @@ present in this URL are added as defaults to the URLs of all requests. Defaults 
 by equally named query string parameters passed into an individual request.
 - If `keepConnectionAlive` is set to true, the connection to the server is kept open between requests.
 
-The class provides methods for all HTTP methods, each of which returns a promise.
+The methods this class provides map to HTTP methods, each of which returns a promise.
 
 - `get (path, queryStringParams = {}, headers = {})`
 - `post (path, requestBodyParams = {}, headers = {})`
