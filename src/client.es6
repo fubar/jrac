@@ -12,17 +12,7 @@ var querystring = require('querystring');
  *
  * A JSON REST API client for Node.js with promises and minimal dependencies.
  *
- * Usage:
- *
- * var booksApi = new RestApiClient('https://www.googleapis.com/books/v1');
- * booksApi
- *   .get('volumes', {q: 'isbn:0307400840'})
- *   .then(result => {
- *     // ...
- *   })
- *   .catch(result => {
- *     // ...
- *   });
+ * See the readme for usage details.
  */
 class RestApiClient {
 
@@ -195,7 +185,7 @@ class RestApiResponse {
 
   /**
    * @param {number} statusCode HTTP status code
-   * @param {Object} headers HTTP response headers
+   * @param {Object} headers HTTP response headers. All keys are lower-case.
    * @param {Object} data The JSON-decoded response body
    */
   constructor (statusCode, headers = {}, data = {}) {
@@ -205,4 +195,4 @@ class RestApiResponse {
   }
 }
 
-module.exports = RestApiClient;
+export {RestApiClient, RestApiResponse};
