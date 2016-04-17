@@ -80,10 +80,16 @@ present in this URL are added as defaults to the URLs of all requests. Defaults 
 by equally named query string parameters passed into an individual request.
 - If `keepConnectionAlive` is set to true, the connection to the server is kept open between requests.
 
-The methods this class provides map to HTTP methods, each of which returns a promise.
+The methods provided by this class map to HTTP methods, each of which returns a promise.
 
 - `get (path, queryStringParams = {}, headers = {})`
 - `post (path, requestBodyParams = {}, headers = {})`
 - `put (path, requestBodyParams = {}, headers = {})`
 - `patch (path, requestBodyParams = {}, headers = {})`
 - `delete (path, headers = {})`
+
+The promise is resolved with an instance of `RestApiResponse` if the response has a status code that is smaller than 400.
+<br> The promise is rejected with an instance of `RestApiResponse` if the response has a status code that is 400 or higher.
+
+If an error occurs, the promise is rejected with an instance of `Error`.
+See <https://nodejs.org/docs/latest/api/errors.html> for details.
