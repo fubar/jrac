@@ -19,8 +19,9 @@ class RestApiClient {
   /**
    * @param {string} apiUrl If no schema is included, HTTPS is assumed.
    * @param {boolean} keepConnectionAlive Defaults to false
+   * @param {object} headers Headers to be added to every request. Can be overwritten in individual requests.
    */
-  constructor (apiUrl, keepConnectionAlive = false) {
+  constructor (apiUrl, keepConnectionAlive = false, headers = {}) {
 
     var urlParts = url.parse(apiUrl, true);
     if (!urlParts.protocol) {
@@ -34,6 +35,7 @@ class RestApiClient {
     this.queryStringParams = urlParts.query;
 
     this.keepConnectionAlive = keepConnectionAlive;
+    this.headers = headers;
     this.lib = isHttps ? https : http;
   }
 
