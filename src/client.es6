@@ -172,11 +172,12 @@ class RestApiClient {
 
   /**
    * @param {string} path
+   * @param {object} requestBodyParams
    * @param {object} headers
    * @returns {Promise}
    */
-  "delete" (path, headers = {}) {
-    return this._request('DELETE', path, {}, {}, headers);
+  "delete" (path, requestBodyParams = {}, headers = {}) {
+    return this._request('DELETE', path, {}, requestBodyParams, headers);
   }
 }
 
