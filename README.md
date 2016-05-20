@@ -86,7 +86,7 @@ The methods provided by this class map to HTTP methods, each of which returns a 
 - `post (path, requestBodyParams = {}, headers = {})`
 - `put (path, requestBodyParams = {}, headers = {})`
 - `patch (path, requestBodyParams = {}, headers = {})`
-- `delete (path, headers = {})`
+- `delete (path, requestBodyParams = {}, headers = {})`
 
 The promise is resolved with an instance of `RestApiResponse` if the response has a status code that is smaller than 400.
 <br> The promise is rejected with an instance of `RestApiResponse` if the response has a status code that is 400 or higher.
