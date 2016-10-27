@@ -43,7 +43,7 @@ class RestApiClient {
    * @param {string} method
    * @param {string} path
    * @param {object} queryStringParams
-   * @param {object} requestBodyParams
+   * @param {object|Array|string} requestBodyParams
    * @param {object} headers
    * @returns {Promise} Resolved or rejected with an object that has the following properties and default values:
    *   {
@@ -65,11 +65,18 @@ class RestApiClient {
     if (this.keepConnectionAlive) {
       headers['Connection'] = 'keep-alive';
     }
-    if (Object.keys(requestBodyParams).length) {
-      body = JSON.stringify(requestBodyParams);
+
+    var requestBodyParamsJson = JSON.stringify(requestBodyParams);
+    if (
+      requestBodyParamsJson !== '{}'
+      && !Object.is(requestBodyParams, undefined)
+      && !Object.is(requestBodyParams, null)
+    ) {
+      body = requestBodyParamsJson;
       headers['Content-Type'] = 'application/json';
       headers['Content-Length'] = body.length;
     }
+
     var lib = this.lib;
     var options = {
       protocol: this.protocol,
@@ -198,4 +205,4 @@ class RestApiResponse {
   }
 }
 
-export {RestApiClient, RestApiResponse};
+module.exports = {RestApiClient, RestApiResponse};
