@@ -12,6 +12,33 @@ the criteria I was looking for:
 This client aims to satisfy all those criteria. Enjoy!
 
 
+## A Note on JSON and UTF-8
+
+JRAC JSON-encodes the body of all requests using `JSON.stringify`, and assumes all request data to be provided in UTF-8.
+As such, it sets the `Content-Type` header of all requests to `application/json; charset=utf-8` by default:
+
+```javascript
+if (!headers.hasOwnProperty('Content-Type') && !headers.hasOwnProperty('content-type')) {
+  headers['Content-Type'] = 'application/json; charset=utf-8';
+}
+if (!headers.hasOwnProperty('Content-Length') && !headers.hasOwnProperty('content-length')) {
+  headers['Content-Length'] = Buffer.byteLength(body, 'utf8');
+}
+```
+
+As you can see, you can override that behaviour by specifying `Content-Type` and/or `Content-Length` headers per-request
+(or for all requests via the class constructor argument).
+
+On the receiving side, JRAC indicates to the server that all responses should be JSON-encoded. This can be overriden in
+the same manner:
+
+```javascript
+if (!headers.hasOwnProperty('Accept') && !headers.hasOwnProperty('accept')) {
+  headers['Accept'] = 'application/json';
+}
+```
+
+
 ## Installation
 ```
 npm install jrac --save

@@ -60,8 +60,11 @@ class RestApiClient {
   _request (method, path, queryStringParams = {}, requestBodyParams = {}, headers = {}) {
 
     var body = '';
+    headers = Object.assign({}, this.headers, headers);
 
-    headers['Accept'] = 'application/json';
+    if (!headers.hasOwnProperty('Accept') && !headers.hasOwnProperty('accept')) {
+      headers['Accept'] = 'application/json';
+    }
     if (this.keepConnectionAlive) {
       headers['Connection'] = 'keep-alive';
     }
@@ -73,8 +76,12 @@ class RestApiClient {
       && !Object.is(requestBodyParams, null)
     ) {
       body = requestBodyParamsJson;
-      headers['Content-Type'] = 'application/json';
-      headers['Content-Length'] = body.length;
+      if (!headers.hasOwnProperty('Content-Type') && !headers.hasOwnProperty('content-type')) {
+        headers['Content-Type'] = 'application/json; charset=utf-8';
+      }
+      if (!headers.hasOwnProperty('Content-Length') && !headers.hasOwnProperty('content-length')) {
+        headers['Content-Length'] = Buffer.byteLength(body, 'utf8');
+      }
     }
 
     var lib = this.lib;
