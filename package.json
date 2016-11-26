@@ -1,6 +1,6 @@
 {
   "name": "jrac",
-  "version": "3.3.0",
+  "version": "3.3.1",
   "description": "A JSON REST API Client for Node.js with promises and minimal dependencies",
   "main": "lib/client.js",
   "scripts": {

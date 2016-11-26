@@ -100,12 +100,13 @@ RestApiResponse {
 
 ### `RestApiClient`
 
-`constructor (apiUrl, keepConnectionAlive = false)`
+`constructor (apiUrl, keepConnectionAlive = false, headers = {})`
 
 - `apiUrl` accepts any valid URL, including port and query string. Query string parameters
 present in this URL are added as defaults to the URLs of all requests. Defaults are overwritten
 by equally named query string parameters passed into an individual request.
 - If `keepConnectionAlive` is set to true, the connection to the server is kept open between requests.
+- `headers`: Headers to be added to every request. Can be overwritten in individual requests.
 
 The methods provided by this class map to HTTP methods, each of which returns a promise.
 
