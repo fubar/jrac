@@ -108,7 +108,7 @@ class RestApiClient {
               try {
                 response.data = JSON.parse(chunks.length && chunks.join('')) || {};
               } catch (e) {
-                // Ignore parse errors
+                response.rawBody = chunks.length && chunks.join('') || '';
               }
               return httpResponse.statusCode < 400 ? resolve(response) : reject(response);
             });

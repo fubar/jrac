@@ -95,6 +95,7 @@ RestApiResponse {
     statusCode: {number} HTTP status code
     headers: {Object} HTTP response headers. All keys are lower-case.
     data: {Object} The JSON-decoded response body
+    rawBody: {String} If JSON-decoding of the response body fails, this property will contain it un-parsed
 }
 ```
 
